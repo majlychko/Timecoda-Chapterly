@@ -1,0 +1,126 @@
+{
+  "status": "computed_by_this_run",
+  "profile": "full",
+  "selected_model": "tfidf",
+  "dev_ids": [
+    1029,
+    1030
+  ],
+  "test_ids": [
+    1031,
+    1032,
+    1033,
+    1034
+  ],
+  "audio_hours": 14.646140937499998,
+  "f1_30": 0.03571428571428571,
+  "precision_30": 0.041666666666666664,
+  "recall_30": 0.03125,
+  "uniform_f1_30": 0.1134572072072072,
+  "delta_mean": -0.0777429214929215,
+  "delta_lo": -0.14358108108108109,
+  "delta_hi": -0.011904761904761904,
+  "asr_selected": "whisper-turbo",
+  "asr_dev": [
+    {
+      "asr": "gigaam-v3",
+      "model": "ai-sage/GigaAM-v3",
+      "dev_F1@30": 0.3333333333333333,
+      "лучший метод": "user2-base",
+      "rtf_dev": 0.0462788799997232,
+      "слов на час": 9054.122120834043,
+      "доля кусков не на русском": 0.0008084074373484236,
+      "расхождение с gigaam-v3": 0.0,
+      "выбрана на dev": false
+    },
+    {
+      "asr": "whisper-turbo",
+      "model": "openai/whisper-large-v3-turbo",
+      "dev_F1@30": 0.41666666666666663,
+      "лучший метод": "tfidf",
+      "rtf_dev": 0.06185173389192514,
+      "слов на час": 8551.13642589022,
+      "доля кусков не на русском": 0.0008084074373484236,
+      "расхождение с gigaam-v3": 0.15435030444376227,
+      "выбрана на dev": true
+    },
+    {
+      "asr": "parakeet-v3",
+      "model": "nvidia/parakeet-tdt-0.6b-v3",
+      "dev_F1@30": 0.3333333333333333,
+      "лучший метод": "tfidf",
+      "rtf_dev": 0.03125438838846449,
+      "слов на час": 8778.713727111972,
+      "доля кусков не на русском": 0.0024291497975708503,
+      "расхождение с gigaam-v3": 0.15055293953174043,
+      "выбрана на dev": false
+    },
+    {
+      "asr": "qwen3-asr",
+      "model": "Qwen/Qwen3-ASR-1.7B-hf",
+      "dev_F1@30": 0.3333333333333333,
+      "лучший метод": "tfidf",
+      "rtf_dev": 0.06778121050420906,
+      "слов на час": 9030.775992351744,
+      "доля кусков не на русском": 0.0008084074373484236,
+      "расхождение с gigaam-v3": 0.16203792211396004,
+      "выбрана на dev": false
+    }
+  ],
+  "rtf": 0.12860465616680375,
+  "generation_fallback_rate": 0.0,
+  "economics": {
+    "status": "scenario_not_measured_saving",
+    "title_acceptance_assumed": true,
+    "title_acceptance": 0.5,
+    "rtf_warm": 0.12860465616680375,
+    "rtf_with_monthly_model_load": 0.1307978559063935,
+    "counts_per_audio_hour": {
+      "tp": 0.10663707626033689,
+      "fp": 2.3460156777274115,
+      "fn": 3.199112287810107
+    },
+    "config": {
+      "episodes_month": 32.5,
+      "manual_min": 75.0,
+      "loaded_hour_rub": 1000.0,
+      "work_hours_month": 160.0,
+      "check_fixed_min": 8.0,
+      "check_chapter_min": 0.75,
+      "remove_fp_min": 0.5,
+      "find_fn_min": 10.0,
+      "title_edit_min": 1.5,
+      "gpu_hour_rub": 150.0,
+      "support_hours_month": 3.0,
+      "developer_hour_rub": 1500.0,
+      "setup_hours": 80.0,
+      "horizon_months": 24
+    },
+    "minutes_after": 45.48293230550842,
+    "minutes_saved": 29.51706769449158,
+    "hours_before": 40.625,
+    "hours_after": 24.636588332150392,
+    "hours_saved": 15.988411667849608,
+    "fte_before": 0.25390625,
+    "fte_after": 0.15397867707593996,
+    "fte_saved": 0.09992757292406004,
+    "gross_month_rub": 15988.411667849608,
+    "compute_month_rub": 637.6395475436684,
+    "opex_month_rub": 5137.639547543668,
+    "net_month_rub": 10850.772120305941,
+    "capex_rub": 120000.0,
+    "payback_months": 11.059120832095823,
+    "roi": 0.5771335716629985
+  },
+  "internal_economics": {
+    "price_episode_rub": 230.0,
+    "price_month_rub": 7475.0,
+    "margin_studio_rub": 4346.603178684496,
+    "ltv_cac": 4.024632572856015,
+    "breakeven_ops_studios": 11.32675074873967,
+    "breakeven_full_studios": 30.37845018858714,
+    "fixed_month_rub": 37000.0,
+    "invest_rub": 400000.0
+  },
+  "repository_url": null
+}

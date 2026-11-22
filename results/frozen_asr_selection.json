@@ -1,0 +1,9 @@
+{
+  "selected_on": "dev only",
+  "asr": "whisper-turbo",
+  "model": "openai/whisper-large-v3-turbo",
+  "dev_ids": [
+    1029,
+    1030
+  ]
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ai-sage/GigaAM-v3",
+    "sha": "7655ad717f8122257385bb4b2f373db3697e8680",
+    "branch": "e2e_rnnt",
+    "license": "mit",
+    "gated": false
+  },
+  {
+    "id": "openai/whisper-large-v3-turbo",
+    "sha": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+    "license": "mit",
+    "gated": false
+  },
+  {
+    "id": "nvidia/parakeet-tdt-0.6b-v3",
+    "sha": "541d1f99c6b0c3cd0b11a95167540bb8edefd82b",
+    "license": "cc-by-4.0",
+    "gated": false
+  },
+  {
+    "id": "Qwen/Qwen3-ASR-1.7B-hf",
+    "sha": "bcd2b5b7f32b480ab5790554cfa8347f246a14f3",
+    "license": "apache-2.0",
+    "gated": false
+  },
+  {
+    "id": "nvidia/Nemotron-3-Diarization",
+    "sha": "52a432672732425e4c19765b9fec9b5810e6f4ba",
+    "license": "openmdw-1.1",
+    "gated": false
+  },
+  {
+    "id": "Qwen/Qwen3-Embedding-0.6B",
+    "sha": "97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3",
+    "license": "apache-2.0",
+    "gated": false
+  },
+  {
+    "id": "Qwen/Qwen3-4B-Instruct-2507",
+    "sha": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "license": "apache-2.0",
+    "gated": false
+  },
+  {
+    "id": "deepvk/USER2-base",
+    "sha": "94bbff0cc696f26dc93b275fc874657727df0c29",
+    "license": "apache-2.0",
+    "gated": false
+  }
+]

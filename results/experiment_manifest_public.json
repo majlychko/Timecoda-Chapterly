@@ -1,0 +1,87 @@
+{
+  "version": "2026-11-19.1",
+  "episodes": [
+    {
+      "id": 1029,
+      "page": "https://radio-t.com/p/2026/09/05/podcast-1029/",
+      "audio_url": "https://cdn.radio-t.com/rt_podcast1029.mp3",
+      "split": "dev",
+      "license": "CC BY-NC-ND 3.0",
+      "metadata_retrieved": "2026-11-19",
+      "chapter_count": 8,
+      "chapter_labels_sha256": "72122250db921a849093c356ec8b6b69fe41d309b3913db153f66bb4b9f4ace3"
+    },
+    {
+      "id": 1030,
+      "page": "https://radio-t.com/p/2026/09/12/podcast-1030/",
+      "audio_url": "https://cdn.radio-t.com/rt_podcast1030.mp3",
+      "split": "dev",
+      "license": "CC BY-NC-ND 3.0",
+      "metadata_retrieved": "2026-11-19",
+      "chapter_count": 5,
+      "chapter_labels_sha256": "11e889bcb2c807381b697fa72260271fb469f6a05861441fb6dbae3565cd7a30"
+    },
+    {
+      "id": 1031,
+      "page": "https://radio-t.com/p/2026/09/19/podcast-1031/",
+      "audio_url": "https://cdn.radio-t.com/rt_podcast1031.mp3",
+      "split": "test",
+      "license": "CC BY-NC-ND 3.0",
+      "metadata_retrieved": "2026-11-19",
+      "chapter_count": 8,
+      "chapter_labels_sha256": "f5454dc8fbf44740f698e2232917e3f592d73aaf09acd1c949c47d3d816a6c52"
+    },
+    {
+      "id": 1032,
+      "page": "https://radio-t.com/p/2026/09/26/podcast-1032/",
+      "audio_url": "https://cdn.radio-t.com/rt_podcast1032.mp3",
+      "split": "test",
+      "license": "CC BY-NC-ND 3.0",
+      "metadata_retrieved": "2026-11-19",
+      "chapter_count": 11,
+      "chapter_labels_sha256": "03316ae655d7561cce3cc75e0194f2e074447a74bbf945ced3554d47f8622b51"
+    },
+    {
+      "id": 1033,
+      "page": "https://radio-t.com/p/2026/10/03/podcast-1033/",
+      "audio_url": "https://cdn.radio-t.com/rt_podcast1033.mp3",
+      "split": "test",
+      "license": "CC BY-NC-ND 3.0",
+      "metadata_retrieved": "2026-11-19",
+      "chapter_count": 9,
+      "chapter_labels_sha256": "bb3fd3e5c815ab99c8f52d4b8ed23d93b6bd6e1ec624aee3b0b6a2aa0444c565"
+    },
+    {
+      "id": 1034,
+      "page": "https://radio-t.com/p/2026/10/17/podcast-1034/",
+      "audio_url": "https://cdn.radio-t.com/rt_podcast1034.mp3",
+      "split": "test",
+      "license": "CC BY-NC-ND 3.0",
+      "metadata_retrieved": "2026-11-19",
+      "chapter_count": 7,
+      "chapter_labels_sha256": "aa2b8c2eca01e04e1dae2c8dc431e3d9ae408223cc66be39427599ead57f348b"
+    }
+  ],
+  "dev": [
+    1029,
+    1030
+  ],
+  "test": [
+    1031,
+    1032,
+    1033,
+    1034
+  ],
+  "limit_min": 0,
+  "seed": 42,
+  "model_revisions": {
+    "ai-sage/GigaAM-v3": "7655ad717f8122257385bb4b2f373db3697e8680",
+    "openai/whisper-large-v3-turbo": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+    "nvidia/parakeet-tdt-0.6b-v3": "541d1f99c6b0c3cd0b11a95167540bb8edefd82b",
+    "Qwen/Qwen3-ASR-1.7B-hf": "bcd2b5b7f32b480ab5790554cfa8347f246a14f3",
+    "nvidia/Nemotron-3-Diarization": "52a432672732425e4c19765b9fec9b5810e6f4ba",
+    "Qwen/Qwen3-Embedding-0.6B": "97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3",
+    "Qwen/Qwen3-4B-Instruct-2507": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "deepvk/USER2-base": "94bbff0cc696f26dc93b275fc874657727df0c29"
+  }
+}

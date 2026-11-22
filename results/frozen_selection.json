@@ -1,0 +1,38 @@
+{
+  "selected_on": "dev only",
+  "method": "tfidf",
+  "configs": {
+    "tfidf": {
+      "block_sec": 30.0,
+      "window": 6,
+      "target_sec": 1200.0,
+      "min_sec": 90.0,
+      "smooth": 1
+    },
+    "user2-base": {
+      "block_sec": 30.0,
+      "window": 4,
+      "target_sec": 600.0,
+      "min_sec": 90.0,
+      "smooth": 1
+    },
+    "qwen-embedding": {
+      "block_sec": 30.0,
+      "window": 6,
+      "target_sec": 600.0,
+      "min_sec": 90.0,
+      "smooth": 1
+    }
+  },
+  "baseline_target": 300.0,
+  "dev_ids": [
+    1029,
+    1030
+  ],
+  "test_ids": [
+    1031,
+    1032,
+    1033,
+    1034
+  ]
+}

@@ -1,0 +1,5 @@
+intervals,method,n_chapters,mean_cosine_to_author,hit1_count,hit1_rate
+gold_intervals,first_words,35,0.6302592822483608,6,0.17142857142857143
+gold_intervals,llm,35,0.7204932911055428,16,0.45714285714285713
+gold_intervals,tfidf_title,35,0.6799400976725987,16,0.45714285714285713
+predicted,llm,27,0.6876706966647396,11,0.4074074074074074

@@ -1,0 +1,10 @@
+{
+  "do_not_publish": [
+    "cache/",
+    "outputs/",
+    "custom/",
+    "uploads/",
+    "human_review.csv"
+  ],
+  "reason": "Аудио и производные тексты чужих выпусков не входят в открытый репозиторий"
+}

@@ -1,0 +1,43 @@
+{
+  "status": "scenario_not_measured_saving",
+  "title_acceptance_assumed": true,
+  "title_acceptance": 0.5,
+  "rtf_warm": 0.12860465616680375,
+  "rtf_with_monthly_model_load": 0.1307978559063935,
+  "counts_per_audio_hour": {
+    "tp": 0.10663707626033689,
+    "fp": 2.3460156777274115,
+    "fn": 3.199112287810107
+  },
+  "config": {
+    "episodes_month": 32.5,
+    "manual_min": 75.0,
+    "loaded_hour_rub": 1000.0,
+    "work_hours_month": 160.0,
+    "check_fixed_min": 8.0,
+    "check_chapter_min": 0.75,
+    "remove_fp_min": 0.5,
+    "find_fn_min": 10.0,
+    "title_edit_min": 1.5,
+    "gpu_hour_rub": 150.0,
+    "support_hours_month": 3.0,
+    "developer_hour_rub": 1500.0,
+    "setup_hours": 80.0,
+    "horizon_months": 24
+  },
+  "minutes_after": 45.48293230550842,
+  "minutes_saved": 29.51706769449158,
+  "hours_before": 40.625,
+  "hours_after": 24.636588332150392,
+  "hours_saved": 15.988411667849608,
+  "fte_before": 0.25390625,
+  "fte_after": 0.15397867707593996,
+  "fte_saved": 0.09992757292406004,
+  "gross_month_rub": 15988.411667849608,
+  "compute_month_rub": 637.6395475436684,
+  "opex_month_rub": 5137.639547543668,
+  "net_month_rub": 10850.772120305941,
+  "capex_rub": 120000.0,
+  "payback_months": 11.059120832095823,
+  "roi": 0.5771335716629985
+}
