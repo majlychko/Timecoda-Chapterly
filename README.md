@@ -2,7 +2,28 @@
 
 Исследовательский прототип для редактора подкаста. Из аудиозаписи он собирает черновик глав с таймкодами, названиями, темами и метками спикеров, а также описание для YouTube и файл глав в формате WebVTT. Редактор проверяет границы и текст перед публикацией.
 
-[Открыть ноутбук в Colab](https://colab.research.google.com/github/majlychko/Group_Homework/blob/main/podcast_chapters.ipynb) · [Посмотреть ноутбук на GitHub](podcast_chapters.ipynb) · [Таблицы и графики](results/README.md) · [Материалы для защиты](results/defense_slides.md)
+[Открыть веб-интерфейс Chapterly](https://podcast-chapters-mvp.vercel.app) · [Запустить ноутбук в Colab](https://colab.research.google.com/github/majlychko/Timecoda-Chapterly/blob/main/podcast_chapters.ipynb) · [Посмотреть ноутбук на GitHub](podcast_chapters.ipynb) · [Таблицы и графики](results/README.md) · [Материалы для защиты](results/defense_slides.md)
+
+## Веб-интерфейс Chapterly
+
+В каталоге [`web/`](web/) находится адаптивный MVP на Next.js. Пользователь может выбрать источник выпуска — аудио или видеофайл, ссылку YouTube либо готовую расшифровку — настроить длительность и получить редактируемый список глав с блоком таймкодов для YouTube.
+
+Текущая Vercel-версия использует лёгкую тематическую сегментацию без GPU. Полный исследовательский пайплайн распознавания речи, диаризации и генерации заголовков находится в [`source/`](source/) и запускается в Colab с GPU.
+
+Локальный запуск интерфейса:
+
+```sh
+cd web
+npm install
+npm run dev
+```
+
+Для нового проекта Vercel укажите `web` в поле **Root Directory**. Команда production-сборки:
+
+```sh
+cd web
+npm run build
+```
 
 ## Что показал полный прогон
 
@@ -37,6 +58,7 @@
 | [source/](source/) | Модули распознавания, диаризации, сегментации, генерации и оценки, расчёт экономики и модульные тесты |
 | [requirements-podcast-colab.txt](requirements-podcast-colab.txt) | Закреплённые зависимости установочной ячейки. Ноутбук отдельно ставит Silero VAD и использует CUDA-сборку PyTorch из образа Colab |
 | [results/](results/README.md) | Результаты полного прогона, графики, ревизии моделей, описание среды и прогнозы |
+| [web/](web/) | Адаптивный интерфейс Chapterly, API лёгкой сегментации и конфигурация Vercel |
 | [LICENSE](LICENSE) | Лицензия MIT на собственный программный код проекта |
 
 Для проверки алгоритмов без загрузки весов запустите команду из корня репозитория в окружении с NumPy. В комплекте 40 модульных тестов.

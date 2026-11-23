@@ -2,8 +2,12 @@ __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
 .venv/
+node_modules/
+.next/
+.vercel/
 .DS_Store
 .env
+.env.*
 podcast_runs/
 podcast_runtime/
 cache/
