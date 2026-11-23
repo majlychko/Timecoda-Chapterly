@@ -22,9 +22,16 @@ export default function Home() {
   async function generate() {
     setLoading(true); setError(""); setCopied(false);
     try {
-      const response = await fetch("/api/chapters", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ transcript, durationMinutes: duration, chapters: count }) });
+      if (sourceType === "youtube" && !youtubeUrl.trim()) throw new Error("Вставьте ссылку на YouTube-видео.");
+      const endpoint = sourceType === "youtube" ? "/api/youtube" : "/api/chapters";
+      const payload = sourceType === "youtube"
+        ? { url: youtubeUrl, chapters: count }
+        : { transcript, durationMinutes: duration, chapters: count };
+      const response = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
+      if (data.transcript) setTranscript(data.transcript);
+      if (data.durationMinutes) setDuration(data.durationMinutes);
       setChapters(data.chapters); setDescription(data.description);
     } catch (e) { setError(e instanceof Error ? e.message : "Ошибка"); }
     finally { setLoading(false); }
@@ -62,8 +69,9 @@ export default function Home() {
           <small>{mediaName ? "Файл выбран" : "или нажмите, чтобы выбрать · MP3, WAV, MP4, MOV"}</small>
         </label>}
         {sourceType === "youtube" && <div className="urlField"><Link2 size={18}/><input value={youtubeUrl} onChange={(e) => setYoutubeUrl(e.target.value)} placeholder="https://youtube.com/watch?v=…"/></div>}
-        {sourceType !== "text" && <div className="mvpHint"><Sparkles size={14}/><span><b>Режим MVP:</b> после выбора источника вставьте расшифровку ниже. Автотранскрибация подключается отдельным GPU‑воркером.</span></div>}
-        <label className="transcriptLabel"><span>{sourceType === "text" ? "Расшифровка выпуска" : "Расшифровка для анализа"}</span><textarea value={transcript} onChange={(e) => setTranscript(e.target.value)} placeholder="Вставьте текст расшифровки…"/></label>
+        {sourceType === "file" && <div className="mvpHint"><Sparkles size={14}/><span><b>Режим MVP:</b> после выбора файла вставьте расшифровку ниже. Автотранскрибация подключается отдельным GPU‑воркером.</span></div>}
+        {sourceType === "youtube" && <div className="mvpHint ready"><Youtube size={14}/><span>Chapterly автоматически возьмёт русские субтитры видео и построит главы.</span></div>}
+        {sourceType !== "youtube" && <label className="transcriptLabel"><span>{sourceType === "text" ? "Расшифровка выпуска" : "Расшифровка для анализа"}</span><textarea value={transcript} onChange={(e) => setTranscript(e.target.value)} placeholder="Вставьте текст расшифровки…"/></label>}
         <div className="controls">
           <label><span>Длительность</span><div><input type="number" min="3" max="600" value={duration} onChange={(e) => setDuration(+e.target.value)}/><small>мин</small></div></label>
           <label><span>Количество глав</span><div><input type="number" min="3" max="15" value={count} onChange={(e) => setCount(+e.target.value)}/><small>глав</small></div></label>
