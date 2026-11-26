@@ -164,7 +164,7 @@ class Experiment:
 
     def select_asr(self):
         # для каждой модели распознавания повторяем на dev весь подбор сегментации (3 метода × 24 варианта)
-        # и берём лучший f1@30; модель распознавания выбираем по нему, как раньше выбирали эмбеддер
+        # и отдельно показываем лучшие связки; ASR выбираем только по фиксированному USER2
         blocks = {(n, i): make_blocks(self.asr_dev[(n, i)]) for n in self.asr_names for i in self.ids["dev"]}
         vectors = {}
         for n in self.asr_names:
@@ -191,22 +191,33 @@ class Experiment:
                                         for i in self.ids["dev"]]))
                     if f1 > best[0]:
                         best = (f1, method, cfg)
+            # Контролируемый опыт: меняется только ASR. USER2 и параметры ниже
+            # одинаковы для всех распознавателей; TF-IDF здесь не переобучается.
+            fixed_cfg = SegmentConfig(window=3, target_sec=600.0, smooth=3)
+            fixed_f1 = float(np.mean([
+                score_boundaries(analyze_embeddings(blocks[(n, i)], vectors[(n, i, "user2-base")],
+                                                    self.episodes[i]["duration"], fixed_cfg)["bounds"],
+                                 self.episodes[i]["gold_bounds"], self.episodes[i]["duration"])["F1@30"]
+                for i in self.ids["dev"]]))
             dev_seconds = sum(self.asr_dev[(n, i)]["inference_seconds"] for i in self.ids["dev"])
             dev_duration = sum(self.episodes[i]["duration"] for i in self.ids["dev"])
             segments = [s for i in self.ids["dev"] for s in self.asr_dev[(n, i)]["segments"]]
             first = self.asr_names[0]
-            rows.append({"asr": n, "model": ASR_CANDIDATES[n]["id"], "dev_F1@30": best[0], "лучший метод": best[1],
+            rows.append({"asr": n, "model": ASR_CANDIDATES[n]["id"],
+                         "fixed_USER2_F1@30": fixed_f1, "fixed_config": str(asdict(fixed_cfg)),
+                         "best_link_F1@30": best[0], "best_link_method": best[1],
                          "rtf_dev": dev_seconds / dev_duration, "слов на час": 3600 * sum(len(s["text"].split()) for s in segments) / dev_duration,
                          "доля кусков не на русском": non_russian_share(segments),
                          f"расхождение с {first}": float(np.mean([transcript_disagreement(self.asr_dev[(first, i)], self.asr_dev[(n, i)])
                                                                 for i in self.ids["dev"]])) if n != first else 0.0})
         self.asr_table = pd.DataFrame(rows)
         # при равенстве f1 выигрывает модель выше в списке кандидатов
-        self.asr_selected = max(self.asr_names, key=lambda n: self.asr_table.set_index("asr").loc[n, "dev_F1@30"])
+        self.asr_selected = max(self.asr_names, key=lambda n: self.asr_table.set_index("asr").loc[n, "fixed_USER2_F1@30"])
         self.asr_table["выбрана на dev"] = self.asr_table.asr == self.asr_selected
         self.asr_table.to_csv(self.work / "asr_selection_dev.csv", index=False)
         save_json(self.work / "frozen_asr_selection.json", {"selected_on": "dev only", "asr": self.asr_selected,
-                  "model": ASR_CANDIDATES[self.asr_selected]["id"], "dev_ids": self.ids["dev"]})
+                  "model": ASR_CANDIDATES[self.asr_selected]["id"], "dev_ids": self.ids["dev"],
+                  "criterion": "fixed_USER2_F1@30", "fixed_config": asdict(fixed_cfg)})
         return self.asr_table
 
     def diarize_test(self):
@@ -398,7 +409,8 @@ class Experiment:
                         scores = vectors[j] @ ref_vectors.T
                         rows.append({"episode": i, "intervals": mode, "method": name, "chapter": j,
                                      "cosine_to_author": float(scores[target]), "retrieval_hit1": float(np.argmax(scores) == target),
-                                     "reference": refs[target], "generated": titles[j]})
+                                     "reference": refs[target], "generated": titles[j],
+                                     "ROUGE_L_F1": rouge_l_f1(refs[target], titles[j])})
                 # рубрика главы - ближайшая по смыслу тема из списка; заодно собираем шаблон ручной оценки
                 if mode == "predicted":
                     started = time.perf_counter()
@@ -418,7 +430,18 @@ class Experiment:
         # это пустой шаблон для редакторов, сами оценки лежат отдельно в human_review.csv
         review_path = self.work / "human_review_template.csv"
         self.review.to_csv(review_path, index=False, encoding="utf-8-sig")
-        self.title_summary = self.title_eval.groupby(["intervals", "method"])[["cosine_to_author", "retrieval_hit1"]].mean()
+        self.title_summary = self.title_eval.groupby(["intervals", "method"])[["ROUGE_L_F1", "cosine_to_author", "retrieval_hit1"]].mean()
+        # Отдельная слепая оценка трёх методов на одних авторских интервалах.
+        method_review = self.title_eval[self.title_eval.intervals == "gold_intervals"][
+            ["episode", "chapter", "method", "generated", "reference"]].copy()
+        method_review["rater"] = ""
+        method_review["title_accepted"] = ""
+        method_review["relevance_0_2"] = ""
+        method_review["clarity_0_2"] = ""
+        method_review["unsupported_claim_0_1"] = ""
+        method_review["comment"] = ""
+        method_review.drop(columns="reference").sample(frac=1, random_state=SEED).to_csv(
+            self.work / "title_method_review_template.csv", index=False, encoding="utf-8-sig")
         return self.title_summary
 
     def export(self):

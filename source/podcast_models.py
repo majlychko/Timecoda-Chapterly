@@ -110,7 +110,10 @@ def resolve_media(source, directory, limit_min=0, cookies=None):
         path = Path(source)
         if not path.is_file():
             raise FileNotFoundError(f"Файл не найден: {source}")
-    return decode_to_wav(path, directory / f"audio_{limit_min:g}min.wav", limit_min)
+    # Имя WAV зависит от содержимого: повторная загрузка другого файла с тем же
+    # именем не должна возвращать декодирование предыдущей записи.
+    fingerprint = file_sha256(path)[:16]
+    return decode_to_wav(path, directory / f"audio_{limit_min:g}min_{fingerprint}.wav", limit_min)
 
 
 def speech_chunks(wav, vad_model, max_sec=20.0, sampling_rate=16000):

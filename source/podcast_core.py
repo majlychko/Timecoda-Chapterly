@@ -12,7 +12,7 @@ from pathlib import Path
 import numpy as np
 
 # версия кода входит в ключи кэша: если мы меняем логику, старые результаты не подхватятся
-VERSION = "2026-11-19.1"
+VERSION = "2026-11-24.2"
 # один seed на весь проект, чтобы случайные baseline и бутстреп повторялись
 SEED = 42
 # стоп-слова для tf-idf: служебные слова и разговорные паразиты, которые не говорят о теме
@@ -281,6 +281,23 @@ def score_boundaries(predicted, reference, duration):
                     f"MAE@{tol}": float(np.mean([a[2] for a in pairs])) if pairs else float("nan")})
     row["Pk"], row["WindowDiff"] = time_window_metrics(p, r, duration)
     return row
+
+
+def rouge_l_f1(reference, candidate):
+    # ROUGE-L F1 по Unicode-словам; правило токенизации одинаково для всех методов.
+    # Регистр и различие ё/е снимаются, порядок слов сохраняется.
+    def tokens(value):
+        return re.findall(r"\w+", str(value).lower().replace("ё", "е"), flags=re.UNICODE)
+    a, b = tokens(reference), tokens(candidate)
+    if not a or not b:
+        return 0.0
+    previous = [0] * (len(b) + 1)
+    for word in a:
+        current = [0]
+        for j, other in enumerate(b, 1):
+            current.append(previous[j - 1] + 1 if word == other else max(previous[j], current[-1]))
+        previous = current
+    return 2 * previous[-1] / (len(a) + len(b))
 
 
 def bootstrap_mean(values, seed=SEED, n_boot=2000):

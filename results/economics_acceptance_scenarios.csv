@@ -1,0 +1,4 @@
+title_acceptance_ASSUMPTION,minutes_after,minutes_saved,hours_before,hours_after,hours_saved,fte_before,fte_after,fte_saved,gross_month_rub,compute_month_rub,opex_month_rub,net_month_rub,capex_rub,payback_months,roi
+0.25,42.084,32.916,40.625,22.795,17.83,0.254,0.142,0.111,17829.567,546.516,5046.516,12783.052,120000.0,9.387,0.775
+0.5,41.004,33.996,40.625,22.211,18.414,0.254,0.139,0.115,18414.405,546.516,5046.516,13367.889,120000.0,8.977,0.833
+0.75,39.924,35.076,40.625,21.626,18.999,0.254,0.135,0.119,18999.243,546.516,5046.516,13952.727,120000.0,8.6,0.891

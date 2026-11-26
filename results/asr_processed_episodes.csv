@@ -1,0 +1,7 @@
+episode,split,asr,segments,words,rtf_asr,from_cache
+1029,dev,gigaam-v3,514,20043,0.0452,False
+1030,dev,gigaam-v3,723,27659,0.0447,False
+1031,test,gigaam-v3,503,19887,0.0452,False
+1032,test,gigaam-v3,545,21962,0.045,False
+1033,test,gigaam-v3,566,22493,0.0456,False
+1034,test,gigaam-v3,592,23150,0.0449,False

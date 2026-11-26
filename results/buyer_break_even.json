@@ -1,0 +1,13 @@
+{
+  "status": "scenario_not_observed",
+  "episodes_per_month": 32.5,
+  "manual_minutes_per_episode_assumption": 75,
+  "after_minutes_per_episode_model": 41.004175,
+  "loaded_editor_hour_rub_assumption": 1000,
+  "subscription_rub_per_episode_assumption": 230,
+  "subscription_rub_per_month": 7475,
+  "resource_value_rub_per_month": 18414.405208333334,
+  "minimum_monetized_share": 0.4059321990273806,
+  "net_rub_per_month_if_half_monetized": 1732.2026041666668,
+  "net_rub_per_month_if_fully_monetized": 10939.405208333334
+}

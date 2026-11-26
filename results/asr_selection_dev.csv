@@ -1,5 +1,5 @@
-asr,model,dev_F1@30,лучший метод,rtf_dev,слов на час,доля кусков не на русском,расхождение с gigaam-v3,выбрана на dev
-gigaam-v3,ai-sage/GigaAM-v3,0.3333333333333333,user2-base,0.0462788799997232,9054.122120834043,0.0008084074373484236,0.0,False
-whisper-turbo,openai/whisper-large-v3-turbo,0.41666666666666663,tfidf,0.06185173389192514,8551.13642589022,0.0008084074373484236,0.15435030444376227,True
-parakeet-v3,nvidia/parakeet-tdt-0.6b-v3,0.3333333333333333,tfidf,0.03125438838846449,8778.713727111972,0.0024291497975708503,0.15055293953174043,False
-qwen3-asr,Qwen/Qwen3-ASR-1.7B-hf,0.3333333333333333,tfidf,0.06778121050420906,9030.775992351744,0.0008084074373484236,0.16203792211396004,False
+asr,model,fixed_USER2_F1@30,fixed_config,best_link_F1@30,best_link_method,rtf_dev,слов на час,доля кусков не на русском,расхождение с gigaam-v3,выбрана на dev
+gigaam-v3,ai-sage/GigaAM-v3,0.2033,"{'block_sec': 30.0, 'window': 3, 'target_sec':...",0.3333,user2-base,0.0449,9054.1221,0.0008,0.0,True
+whisper-turbo,openai/whisper-large-v3-turbo,0.2033,"{'block_sec': 30.0, 'window': 3, 'target_sec':...",0.4167,tfidf,0.0561,8551.1364,0.0008,0.1544,False
+parakeet-v3,nvidia/parakeet-tdt-0.6b-v3,0.2033,"{'block_sec': 30.0, 'window': 3, 'target_sec':...",0.3333,tfidf,0.0282,8778.7137,0.0024,0.1506,False
+qwen3-asr,Qwen/Qwen3-ASR-1.7B-hf,0.1507,"{'block_sec': 30.0, 'window': 3, 'target_sec':...",0.3333,tfidf,0.0635,9030.776,0.0008,0.162,False

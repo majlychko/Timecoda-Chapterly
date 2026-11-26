@@ -1,0 +1,7 @@
+stage,RTF по production-этапам
+asr,0.0452
+diarization,0.0573
+embedding:user2-base,0.0002
+llm,0.0051
+segmentation:user2-base,0.0
+topics,0.0

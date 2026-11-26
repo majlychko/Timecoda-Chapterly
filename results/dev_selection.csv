@@ -1,0 +1,4 @@
+method,block_sec,window,target_sec,min_sec,smooth,dev_F1@30
+user2-base,30.0,2,1200.0,90.0,3,0.3333
+qwen-embedding,30.0,6,900.0,90.0,1,0.2625
+tfidf,30.0,6,1200.0,90.0,3,0.25
